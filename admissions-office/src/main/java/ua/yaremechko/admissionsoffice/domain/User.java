@@ -1,12 +1,27 @@
 package ua.yaremechko.admissionsoffice.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
+	private String confirmPassword;
+
+	@Enumerated(EnumType.STRING)
 	private UserRole role;
 
 	public User() {
@@ -27,6 +42,17 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.role = role;
+	}
+
+	public User(User user) {
+		super();
+		this.id = user.id;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.email = user.email;
+		this.password = user.password;
+		this.confirmPassword = user.confirmPassword;
+		this.role = user.role;
 	}
 
 	public Integer getId() {
@@ -69,6 +95,14 @@ public class User {
 		this.password = password;
 	}
 
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
 	public UserRole getRole() {
 		return role;
 	}
@@ -81,6 +115,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((confirmPassword == null) ? 0 : confirmPassword.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -99,6 +134,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (confirmPassword == null) {
+			if (other.confirmPassword != null)
+				return false;
+		} else if (!confirmPassword.equals(other.confirmPassword))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -132,7 +172,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", role=" + role + "]";
+				+ ", password=" + password + ", confirmPassword=" + confirmPassword + ", role=" + role + "]";
 	}
 
 }

@@ -1,5 +1,5 @@
 package ua.yaremechko.admissionsoffice.domain;
 
 public enum UserRole {
-	ADMAINISTRATOR, ENTRANT;
+	ROLE_ADMIN, ROLE_ENTRANT;
 }
