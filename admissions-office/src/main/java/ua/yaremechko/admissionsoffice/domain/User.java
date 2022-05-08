@@ -45,7 +45,6 @@ public class User {
 	}
 
 	public User(User user) {
-		super();
 		this.id = user.id;
 		this.firstName = user.firstName;
 		this.lastName = user.lastName;

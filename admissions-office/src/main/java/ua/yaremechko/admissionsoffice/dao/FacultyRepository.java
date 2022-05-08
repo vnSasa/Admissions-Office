@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import ua.yaremechko.admissionsoffice.domain.Faculty;
 
-public interface FaculyRepository extends JpaRepository<Faculty, Integer> {
+public interface FacultyRepository extends JpaRepository<Faculty, Integer> {
 
 }
