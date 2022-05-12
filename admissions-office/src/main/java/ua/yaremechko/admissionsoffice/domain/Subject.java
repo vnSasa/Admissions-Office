@@ -91,6 +91,6 @@ public class Subject {
 
 	@Override
 	public String toString() {
-		return nameOfSubject + ", mark=" + mark +" ";
+		return nameOfSubject.toString().toLowerCase().replace('_', ' ') + " - " + mark;
 	}
 }

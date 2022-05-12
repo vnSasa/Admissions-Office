@@ -39,8 +39,7 @@
 			<span class="w3-bar-item w3-padding-16">Content</span>
 			<button onclick="w3_close()"
 				class="w3-bar-item w3-button w3-right w3-padding-16"
-				title="close Sidebar">&times;
-			</button>
+				title="close Sidebar">&times;</button>
 		</div>
 		
 		<div class="w3-bar-block">
@@ -66,7 +65,7 @@
 			
 		</div>
 	</div>
-
+	
 <!-- Page Content -->
 
 	<div id="main" style="margin-left: 200px">
@@ -74,15 +73,16 @@
 		<div class="w3-container w3-display-container">
 			<span title="open Sidebar" style="display: none" id="openNav"
 				class="w3-button w3-transparent w3-display-topleft w3-xlarge"
-				onclick="w3_open()">&#9776;
-			</span>
+				onclick="w3_open()">&#9776;</span>
+
 		</div>
 
 		<div class="container" style="margin-left: 100px">
 
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<form id="logoutForm" method="POST" action="${contextPath}/logout">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 				</form>
 
 				<h2>
@@ -91,30 +91,20 @@
 
 			</c:if>
 
+			<h1 style="text-align: center">Students enrolled for the ${faculty.name} faculty</h1>
 			<table class="w3-table-all w3-large">
 
 				<tr>
-					<th>Photo</th>
 					<th>First Name</th>
 					<th>Last Name</th>
-					<th>Faculty</th>
-					<th>Marks</th>
 					<th>Total mark</th>
-					<th>Accept field</th>
 				</tr>
 
 				<c:forEach items="${entrants}" var="currentEntrant">
 					<tr>
-						<td><img src="data:image/jpg;base64, ${currentEntrant.encodedImage}" alt="Norway" style="width: 100%"></td>
 						<td>${currentEntrant.user.firstName}</td>
 						<td>${currentEntrant.user.lastName}</td>
-						<td>${currentEntrant.faculty.name}</td>
-						<td>${currentEntrant.marks}</td>
-						<td>${currentEntrant.totalMark}</td>
-						<td><form:form action="${contextPath}/registeredEntrants" method="POST">
-								<input type="hidden" value="${currentEntrant.id}" class="form-control" name="entrantId"> 
-								<input type="submit" class="w3-button w3-block w3-dark-grey" value="+ add to statement">
-							</form:form></td>
+						<td>${currentEntrant.totalMark}</>
 					</tr>
 
 				</c:forEach>
@@ -138,7 +128,6 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("openNav").style.display = "inline-block";
 }
-
 </script>
 
 <!-- /container -->
