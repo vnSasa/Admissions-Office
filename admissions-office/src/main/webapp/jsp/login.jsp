@@ -24,6 +24,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -31,7 +32,7 @@
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
 <div class="text-center" style="padding:50px 0">
-	<div class="logo">login</div>
+	<div class="logo">login <i class="glyphicon glyphicon-user"></i></div>
 	<!-- Main Form -->
 	<div class="login-form-1">
 		<form method="POST" action="${contentPath}/login" id="login-form" class="text-left form-signin">

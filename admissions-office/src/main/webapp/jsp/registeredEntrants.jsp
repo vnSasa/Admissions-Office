@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -48,7 +49,9 @@
 			<a class="w3-bar-item w3-button w3-green" href="/home">Home</a> 
 			<a class="w3-bar-item w3-button" href="/statement">Statement</a> 
 			<a class="w3-bar-item w3-button" href="/entrantRegistration">Entrant Registration (NOT WORK)</a>
+			<security:authorize access="hasRole('ROLE_ADMIN')">
 			<a class="w3-bar-item w3-button" href="/registeredEntrants">See All Entrants</a>
+			</security:authorize>
 			
 			<div class="w3-dropdown-hover">
 				<a class="w3-button" href="javascript:void(0)">Select Faculty (NOT WORK)<i class="fa fa-caret-down"></i></a>
