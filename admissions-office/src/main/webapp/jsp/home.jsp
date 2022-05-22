@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
@@ -36,7 +37,7 @@
 		style="width: 200px" id="mySidebar">
 		
 		<div class="w3-bar w3-dark-grey">
-			<span class="w3-bar-item w3-padding-16">Content</span>
+			<span class="w3-bar-item w3-padding-16"><spring:message code='home.content'/><br>${pageContext.request.userPrincipal.name}</span>
 			<button onclick="w3_close()"
 				class="w3-bar-item w3-button w3-right w3-padding-16"
 				title="close Sidebar">&times;
@@ -45,24 +46,24 @@
 		
 		<div class="w3-bar-block">
 			
-			<a class="w3-bar-item w3-button w3-green" href="/home">Home</a> 
-			<a class="w3-bar-item w3-button" href="/statement">Statement</a> 
+			<a class="w3-bar-item w3-button w3-green" href="/home"><spring:message code='home.home'/></a> 
+			<a class="w3-bar-item w3-button" href="/statement"><spring:message code='home.statement'/></a> 
 			<a class="w3-bar-item w3-button" href="/entrantRegistration">Entrant Registration (NOT WORK)</a>
 			<security:authorize access="hasRole('ROLE_ADMIN')">
-			<a class="w3-bar-item w3-button" href="/registeredEntrants">See All Entrants</a>
+			<a class="w3-bar-item w3-button" href="/registeredEntrants"><spring:message code='home.entrant_register'/></a>
 			</security:authorize>
 			
 			<div class="w3-dropdown-hover">
-				<a class="w3-button" href="javascript:void(0)">Select Faculty (NOT WORK)<i class="fa fa-caret-down"></i></a>
+				<a class="w3-button" href="javascript:void(0)"><spring:message code='home.select_faculty'/> (NOT WORK)<i class="fa fa-caret-down"></i></a>
 				<div class="w3-dropdown-content w3-bar-block w3-card-4">
 					<a class="w3-bar-item w3-button"
-						href="${contextPath}/enrolledEntrants?facId=1">Economical</a> 
+						href="${contextPath}/enrolledEntrants?facId=1"><spring:message code='home.economical'/></a> 
 					<a class="w3-bar-item w3-button"
-						href="${contextPath}/enrolledEntrants?facId=2">Biological</a> 
+						href="${contextPath}/enrolledEntrants?facId=2"><spring:message code='home.biological'/></a> 
 					<a class="w3-bar-item w3-button"
-						href="${contextPath}/enrolledEntrants?facId=3">Languages</a> 
+						href="${contextPath}/enrolledEntrants?facId=3"><spring:message code='home.languages'/></a> 
 					<a class="w3-bar-item w3-button"
-						href="${contextPath}/enrolledEntrants?facId=4">Geographical</a>
+						href="${contextPath}/enrolledEntrants?facId=4"><spring:message code='home.geographical'/></a>
 				</div>
 			</div>
 			
@@ -82,16 +83,21 @@
 
 		<div class="container" style="margin-left: 100px">
 
+		<div class="navigation">
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<form id="logoutForm" method="POST" action="${contextPath}/logout">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 
-				<h2>
-					Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-				</h2>
+				<a class="button" onclick="document.forms['logoutForm'].submit()" style="cursor: pointer">
+
+					<div class="logout"><spring:message code='home.logout'/></div>
+				
+				</a>
 
 			</c:if>
+			
+		</div>
 
 			<div style="display: flex">
 				<c:if test="${not empty faculties}">
@@ -134,9 +140,6 @@ function w3_close() {
 }
 
 </script>
-  
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
 </body>
 </html>
